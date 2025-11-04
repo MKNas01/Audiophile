@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-orange-primary: #D87D4A;
+  --color-orange-light: #FBAF85;
+  --color-gray-dark: #101010;
+  --color-gray-light: #F1F1F1;
+  --color-gray-lighter: #FAFAFA;
+  --color-gray-medium: #4C4C4C; 
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom Utilities (replaces @layer components—v4 ensures @apply works with variants/hovers) */
+@utility btn-primary {
+  @apply bg-[--color-orange-primary] text-[--color-white] px-8 py-4 rounded-md font-medium uppercase tracking-widest transition-all duration-300;
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-orange-primary) 80%, transparent);
+    transform: scale(1.05);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility btn-secondary {
+  @apply border-[--color-gray-dark] border text-[--color-gray-dark] px-8 py-4 rounded-md font-medium uppercase tracking-widest transition-all duration-300;
+  &:hover {
+    color: var(--color-orange-primary);
+  }
 }
+
+@utility card-hover {
+  @apply transition-all duration-300;
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+@utility section-padding {
+  @apply py-20 px-6; /* 80px top/bottom, 24px sides */
+}
+
+@utility mb-200 {
+  @apply mb-[200px]; /* 200px bottom margin */
+}
+
+/* Responsive Images (unchanged) */
+img {
+  max-width: 100%;
+  height: auto;
+}
+

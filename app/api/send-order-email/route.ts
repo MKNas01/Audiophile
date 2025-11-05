@@ -227,7 +227,8 @@ export async function POST(request: NextRequest) {
     const info = await sgMail.send(msg);
 
     console.log('Email sent successfully to:', body.customer.email);
-    return NextResponse.json({ success: true, messageId: info[0].messageId });
+    // FIXED: Remove messageId to avoid TS error (not essential for your app)
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Email send failed:', {
       message: error.message,
